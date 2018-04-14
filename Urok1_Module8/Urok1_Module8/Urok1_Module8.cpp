@@ -186,7 +186,8 @@ void main()
 			{
 				/*10. Введите массив символов из 12 элементов. Замените каждый символ- цифру на символ '!'*/
 				//int k;
-				char *word = (char*)malloc(10 * sizeof(char));
+				char *word = (char*)malloc(12 * sizeof(char));
+				printf("Необходимо заменить каждый символ-цифру на символ '!'");
 				printf("Введите слово из 12 символов: ");
 				scanf("%s", word);
 				//int len = strlen(word);
@@ -205,19 +206,67 @@ void main()
 			case 11:
 			{
 				/*11. Дана матрица символов размером 2×6. Сколько раз среди данных символов встречаются символы +, -, *.*/
+				
+				unsigned char ch;
+				//char *word = (char*)malloc(255 * sizeof(char));
+				/*printf("Необходимо заменить каждый символ-цифру на символ '!'");
+				printf("Введите слово из 12 символов: ");*/
+				/*scanf("%s", word);*/
+				//int len = strlen(word);
 
+				for (int i = 0; i<256; i++)
+				{
+					ch = i;
+					printf("Измененное слово: %d = %c\n",i, ch);
+				}
+				system("pause");
+				system("cls");
 			}break;
 
 			case 12:
 			{
 				/*12. Введите массив символов из 15 элементов. Подсчитать количество гласных русских букв.*/
+				unsigned char *word = (unsigned char*)malloc(15 * sizeof(unsigned char));
+				printf("Необходимо подсчитать количество гласных русских букв");
+				printf("Введите слово из 15 символов: ");
+				scanf("%s", word);
+				//int len = strlen(word);
+				int count=0;
+				for (int i = 0; *(word + i) != '\0'; i++)
+				{
+					if ((*(word + i) == 128) || (*(word + i) == 160) || (*(word + i) == 133) || (*(word + i) == 165)
+					 || (*(word + i) == 136) || (*(word + i) == 168) || (*(word + i) == 142) || (*(word + i) == 174)
+					 || (*(word + i) == 147) || (*(word + i) == 227) || (*(word + i) == 155) || (*(word + i) == 235)
+					 || (*(word + i) == 157) || (*(word + i) == 237) || (*(word + i) == 158) || (*(word + i) == 238)
+					 || (*(word + i) == 159) || (*(word + i) == 239))
+						
+					 count++;
+				}
 
+				printf("Количество гласных русских букв: %d\n", count);
+				system("pause");
+				system("cls");
 			}break;
 
 			case 13:
 			{
 				/*13. Дан массив символов, среди которых есть символ двоеточие ‘:’. Определить, сколько символов ему предшествует.*/
+				char *word = (char*)malloc(10 * sizeof(char));
+				printf("Необходимо определить, сколько символов ему предшествует символу двоеточие ‘:’\n");
+				printf("Введите массив символов: \n");
+				scanf("%s", word);
+				int len = strlen(word);
+				int count = 0;
+				for (int i = 0; i<len; i++)
+				{
+					count++;
+					if (*(word + i) == ':')
+						break;
+				}
 
+				printf("Количество символов: %d\n", count-1);
+				system("pause");
+				system("cls");
 			}break;
 
 			case 14:
