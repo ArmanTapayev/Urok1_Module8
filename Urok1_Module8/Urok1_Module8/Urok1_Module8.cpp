@@ -2,12 +2,14 @@
 #include<iostream>
 #include<locale.h>
 #include<string.h>
+#include<time.h>
 
 using namespace std;
 
 void main()
 {
 	setlocale(LC_ALL, "rus");
+	srand(time(NULL));
 	int n;
 	printf("В работе 15 заданий.\n"); 
 	printf("Для завершения наберите 0.\n");
@@ -206,19 +208,35 @@ void main()
 			case 11:
 			{
 				/*11. Дана матрица символов размером 2×6. Сколько раз среди данных символов встречаются символы +, -, *.*/
-				
-				unsigned char ch;
-				//char *word = (char*)malloc(255 * sizeof(char));
-				/*printf("Необходимо заменить каждый символ-цифру на символ '!'");
-				printf("Введите слово из 12 символов: ");*/
-				/*scanf("%s", word);*/
-				//int len = strlen(word);
+				int plus = 0, minus = 0, dot = 0, count=0;
+				char *symbol = (char*)malloc(12 * sizeof(char));
 
-				for (int i = 0; i<256; i++)
+				for (int i = 0; i < 2; i++)
 				{
-					ch = i;
-					printf("Измененное слово: %d = %c\n",i, ch);
+					for (int j = 0; j < 6; j++)
+					{
+						*(symbol + i * 2 + j) = 40+rand()%50;
+					}
 				}
+
+				for (int i = 0; i < 2; i++)
+				{
+					for (int j = 0; j < 6; j++)
+					{
+						if (*(symbol + i*2 + j) == '+')
+							plus++;
+						if (*(symbol + i * 2 + j) == '-')
+							minus++;
+						if (*(symbol + i * 2 + j) == '.')
+							dot++;
+						printf("%c", *(symbol + i * 2 + j));
+					}				
+					printf("\n");
+				}
+
+				printf("Количество символов '+': %d\n", plus);
+				printf("Количество символов '-': %d\n", minus);
+				printf("Количество символов '.': %d\n", dot);
 				system("pause");
 				system("cls");
 			}break;
@@ -227,8 +245,8 @@ void main()
 			{
 				/*12. Введите массив символов из 15 элементов. Подсчитать количество гласных русских букв.*/
 				unsigned char *word = (unsigned char*)malloc(15 * sizeof(unsigned char));
-				printf("Необходимо подсчитать количество гласных русских букв");
-				printf("Введите слово из 15 символов: ");
+				printf("Необходимо подсчитать количество гласных русских букв.\n");
+				printf("Введите слово из 15 символов: \n");
 				scanf("%s", word);
 				//int len = strlen(word);
 				int count=0;
@@ -272,11 +290,68 @@ void main()
 			case 14:
 			{
 				/*14. Дан массив символов. Определить, сколько раз входит в него группа букв abc.*/
+				//char ch;
+				char *word = (char*)malloc(10 * sizeof(char));
+				printf("Необходимо определить сколько раз входит в массив группа букв abc.\n");
+				printf("Введите массив из 10 символов: \n");
+				scanf("%s", word);
+				int len = strlen(word);
+				int count = 0;
+				for (int i = 0; i<len-2; i++)
+				{
+					if (*(word + i) == 'a' && *(word + i + 1) =='b' && *(word + i + 2) == 'c')
+						count++;
+				}
+
+				printf("Группа букв abc входит %d раз\n", count);
+				system("pause");
+				system("cls");
 			}break;
 
 			case 15:
 			{
 				/*15. Заданы две строки. Построить новую строку, состоящую из символов, которые входят в первую строку, но не входят во вторую.*/
+				char *string1 = (char*)malloc(10 * sizeof(char));
+				char *string2 = (char*)malloc(10 * sizeof(char));
+				char *string3 = NULL;
+				string3 = (char*)malloc(10 * sizeof(char));
+				int i, j;
+				for (i = 0; i < strlen(string1); i++)
+				{
+					*(string1 + i) = 40 + rand() % 50;
+					*(string2 + i) = 40 + rand() % 50;
+				}
+
+				printf("%s\n", string1);
+				printf("%s\n", string2);
+
+				int k = 0, flag=1;
+				for ( i = 0; *(string1 + i) != '\0'; i++)
+				{
+					for ( j = 0; *(string2 + j) != '\0'; j++)
+					{
+						if (*(string1 + i) == (*(string2 + j)))
+						{
+							flag = 0;
+							break;
+						}
+						flag = 1;
+					}
+						if (flag)
+						{
+							*(string3 + k) = *(string1 + i);
+							k++;
+						}
+						
+					
+					
+				}
+				*(string3 + k) = '\0';
+
+				printf("%s\n", string3);
+
+				system("pause");
+				system("cls");
 
 			}break;
 
